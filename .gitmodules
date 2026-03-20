@@ -1,0 +1,6 @@
+[submodule "NCLCoreClasses"]
+	path = NCLCoreClasses
+	url = https://github.com/RichDavisonNCL/NCLCoreClasses.git
+[submodule "VulkanRendering"]
+	path = VulkanRendering
+	url = https://github.com/RichDavisonNCL/VulkanRendering
