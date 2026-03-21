@@ -123,6 +123,7 @@ target_include_directories (${PROJECT_NAME}
     PUBLIC ${CMAKE_SOURCE_DIR}/NCLCoreClasses
     PUBLIC ${CMAKE_SOURCE_DIR}/VulkanRendering
     PUBLIC ${CMAKE_SOURCE_DIR}/GLTFLoader
+    PUBLIC ${CMAKE_SOURCE_DIR}/idTechoaders
     PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
 )
 

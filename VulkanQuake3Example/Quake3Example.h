@@ -7,6 +7,7 @@ License: MIT (see LICENSE file at the top of the source tree)
 *//////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include "VulkanTutorial.h"
+#include "../idTechLoaders/Quake3MapLoader.h"
 
 namespace NCL::Rendering::Vulkan {
 	class Quake3Example : public VulkanTutorial	{
@@ -17,5 +18,8 @@ namespace NCL::Rendering::Vulkan {
 		void RenderFrame(float dt) override;
 
 		VulkanPipeline		pipeline;
+
+		idTechLoaders::Quake3Map* map;
+		VulkanMesh* mesh;
 	};
 }
