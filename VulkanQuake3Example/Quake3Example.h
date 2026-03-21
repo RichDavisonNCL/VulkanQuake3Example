@@ -13,7 +13,9 @@ namespace NCL::Rendering::Vulkan {
 	class Quake3Example : public VulkanTutorial	{
 	public:
 		Quake3Example(Window& window, VulkanInitialisation& vkInit);
-		~Quake3Example() {} //Nothing to delete in this one!
+		~Quake3Example() {
+			delete mesh;
+		} 
 	protected:
 		void RenderFrame(float dt) override;
 

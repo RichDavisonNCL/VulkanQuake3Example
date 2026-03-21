@@ -7,6 +7,7 @@ License: MIT (see LICENSE file at the top of the source tree)
 *//////////////////////////////////////////////////////////////////////////////
 #include "Quake3Example.h"
 #include "Assets.h"
+
 using namespace NCL;
 using namespace Rendering;
 using namespace Vulkan;
@@ -39,8 +40,8 @@ void Quake3Example::RenderFrame(float dt) {
 	context.cmdBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, pipeline);
 	context.cmdBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, *pipeline.layout, 0, 1, &*m_cameraDescriptor, 0, nullptr);
 
-	Matrix4 model;
+	const float scale = 1.0f / 8.0f;
+	Matrix4 model = Matrix::Scale(Vector3(scale, scale, scale));
 	context.cmdBuffer.pushConstants(*pipeline.layout, vk::ShaderStageFlagBits::eVertex, 0, sizeof(Matrix4), (void*)&model);
-	//mesh->Draw(context.cmdBuffer);
 	mesh->DrawAllLayers(context.cmdBuffer);
 }

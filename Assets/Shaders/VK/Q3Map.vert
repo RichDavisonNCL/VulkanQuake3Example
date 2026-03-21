@@ -12,8 +12,10 @@ License: MIT (see LICENSE file at the top of the source tree)
 
 layout (location = 0) in vec3 pos;
 layout (location = 2) in vec2 texCoord;
+layout (location = 3) in vec3 inNormal;
 
 layout (location = 0) out vec2 outTex;
+layout (location = 1) out vec3 outNormal;
 
 layout (set = 0, binding  = 0) uniform  CameraMatrices 
 {
@@ -26,7 +28,8 @@ layout(push_constant) uniform PushConstantVert{
 };
 
 void main() {
-   outTex 	= texCoord;
+   outTex 		= texCoord;
+   outNormal	= inNormal;
 
    vec4 worldPos = modelMatrix * vec4(pos.xyz, 1);
    
