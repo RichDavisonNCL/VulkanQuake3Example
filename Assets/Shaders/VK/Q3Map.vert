@@ -14,8 +14,11 @@ layout (location = 0) in vec3 pos;
 layout (location = 2) in vec2 texCoord;
 layout (location = 3) in vec3 inNormal;
 
+layout (location = 7) in vec4 inGeneral;
+
 layout (location = 0) out vec2 outTex;
 layout (location = 1) out vec3 outNormal;
+layout (location = 2) out vec2 outLightmap;
 
 layout (set = 0, binding  = 0) uniform  CameraMatrices 
 {
@@ -30,6 +33,7 @@ layout(push_constant) uniform PushConstantVert{
 void main() {
    outTex 		= texCoord;
    outNormal	= inNormal;
+   outLightmap  = inGeneral.xy;
 
    vec4 worldPos = modelMatrix * vec4(pos.xyz, 1);
    

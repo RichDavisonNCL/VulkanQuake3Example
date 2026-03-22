@@ -21,7 +21,12 @@ namespace NCL::Rendering::Vulkan {
 
 		VulkanPipeline		pipeline;
 
+		vk::UniqueDescriptorSet			bindlessSet;
+		vk::UniqueDescriptorSetLayout	bindlessLayout;
+
 		idTechLoaders::Quake3Map* map;
 		VulkanMesh* mesh;
+
+		std::vector<UniqueVulkanTexture> lightmaps;
 	};
 }

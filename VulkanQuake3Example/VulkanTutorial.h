@@ -96,7 +96,6 @@ namespace NCL::Rendering::Vulkan {
 		vk::UniqueDescriptorSet			m_cameraDescriptor;
 		vk::UniqueDescriptorSetLayout	m_cameraLayout;
 
-		vk::UniqueDescriptorSetLayout	m_nullLayout;
 		vk::UniqueSampler				m_defaultSampler;
 
 		float m_runTime;

@@ -25,7 +25,6 @@ VulkanTutorial::~VulkanTutorial() {
 	m_memoryManager->DiscardBuffer(m_cameraBuffer, DiscardMode::Immediate);
 	m_cameraDescriptor.reset();
 	m_cameraLayout.reset();
-	m_nullLayout.reset();
 	m_defaultSampler.reset();
 
 	delete m_memoryManager;
@@ -61,9 +60,6 @@ void VulkanTutorial::Initialise() {
 	m_cameraDescriptor = CreateDescriptorSet(device, context.descriptorPool, *m_cameraLayout);
 
 	WriteBufferDescriptor(device, *m_cameraDescriptor, 0, vk::DescriptorType::eUniformBuffer, m_cameraBuffer);
-
-	m_nullLayout = DescriptorSetLayoutBuilder(device).Build("null layout");
-	SetNullDescriptor(device, *m_nullLayout);
 }
 
 void VulkanTutorial::BuildCamera() {
