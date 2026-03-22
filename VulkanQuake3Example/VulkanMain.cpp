@@ -22,7 +22,7 @@ int main(int argc, char* argv[]) {
 	NCL::Vulkan::VulkanInitialisation vkInit = VulkanTutorial::DefaultInitialisation();
 	std::string example = "Quake3Example";
 
-	bool lockCursor = false;
+	bool lockCursor = true;
 	bool runTests = false;
 
 	for (int i = 0; i < argc; ++i) {
@@ -75,6 +75,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	w->LockMouseToWindow(lockCursor);
+	w->ShowOSPointer(false);
 
 	int returnState = 0;
 
