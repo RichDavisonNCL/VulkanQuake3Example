@@ -44,23 +44,20 @@ void Quake3Example::RenderFrame(float dt) {
 	context.cmdBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, pipeline);
 	context.cmdBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, *pipeline.layout, 0, 1, &*m_cameraDescriptor, 0, nullptr);
 
-	const float scale = 1.0f;// 1.0f / 8.0f;
+	const float scale = 1.0f;// / 8.0f;
 	Matrix4 model = Matrix::Scale(Vector3(scale, scale, scale));
 	context.cmdBuffer.pushConstants(*pipeline.layout, vk::ShaderStageFlagBits::eVertex, 0, sizeof(Matrix4), (void*)&model);
 
-	Vector3 camPos = m_camera.GetPosition() * scale;
+	Vector3 camPos = m_camera.GetPosition() / scale;
+	std::vector<uint32_t> visibleFaces;
 
-	if (map->IsPositionInMap(camPos)) {	
-	//	//Work out the subset of visible clusters...
-		std::vector<uint32_t> visibleFaces;
-		map->BuildVisibleSubmeshList(camPos, visibleFaces);
+	if (map->BuildVisibleSubmeshList(camPos, visibleFaces)) {
 		for (uint32_t index : visibleFaces) {
 			mesh->DrawLayer(index, context.cmdBuffer);
 		}
 		std::cout << "In map: rendering " << visibleFaces.size() << " faces\n";
 	}
-	else {
-		//Outside the map bounds, just draw everything!
+	else {//Outside the map bounds, just draw everything!	
 		mesh->DrawAllLayers(context.cmdBuffer);
 		std::cout << "Outside map: rendering all faces\n";
 	}
